@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 app.get('/redis', async function(req, res) {
   const value = await new Promise(function(resolve, reject) {
-    client.incr('31', (err, reply) => {
+    client.incr('31', function (err, reply) {
       if (err) reject(err)
       else resolve(reply)
     })
