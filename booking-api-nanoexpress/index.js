@@ -7,12 +7,12 @@ const client = redis.createClient({
   host: process.env.REDIS_HOST
 })
 
-app.get('/', (req, res) => {
+app.get('/', function (req, res) {
   return res.send({ status: 'ok' });
 });
 
-app.get('/redis', async (req, res) => {
-  const value = await new Promise((resolve, reject) => {
+app.get('/redis', async function(req, res) {
+  const value = await new Promise(function(resolve, reject) {
     client.incr('31', (err, reply) => {
       if (err) reject(err)
       else resolve(reply)
