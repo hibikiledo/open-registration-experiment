@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/redis', (req, res) => {
   client.incr('31', (err, reply) => {
-    res.json({ value: reply });
+    res.send({ value: reply });
   })
 })
 
