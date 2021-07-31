@@ -11,10 +11,14 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok' })
 })
 
-app.get('/redis', (req, res) => {
-  client.incr('31', (err, reply) => {
-    res.json({ value: reply });
+app.get('/redis', async (req, res) => {
+  const value = await new Promise((resolve, reject) => {
+    client.incr('31', (err, reply) => {
+      if (err) reject(err)
+      else resolve(reply)
+    })
   })
+  res.json({ value })
 })
 
 app.listen(port, () => {
